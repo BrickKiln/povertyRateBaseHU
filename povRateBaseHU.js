@@ -30,7 +30,7 @@ var svg = d3.select("#graph")
         .attr("class", "svg");
 
 // Import the CSV data
-d3.csv("diffPovRates.csv", function(error, data) {
+d3.csv("diffPovRatesOut.csv", function(error, data) {
   if (error) throw error;
 
    // Format the data
@@ -71,6 +71,16 @@ d3.csv("diffPovRates.csv", function(error, data) {
           .tickPadding(6)
           .tickSize(2, 0));
 
+  // Add standard 60% threshold line
+  svg.append("line")
+        .attr("y1", 300)
+        .attr("y2", 0)
+        .attr("x1", x(60))
+        .attr("x2", x(60))
+        .style("stroke-width", 1)
+        .style("stroke-dasharray", "5, 5")
+        .attr("class", "line");
+
   // Add a label to the y axis
   svg.append("text")
         .attr("transform", "rotate(-90)")
@@ -80,6 +90,7 @@ d3.csv("diffPovRates.csv", function(error, data) {
         .style("text-anchor", "middle")
         .text("Poverty Rate")
         .attr("class", "axis");
+
   // Add a label to the x axis
   svg.append("text")
     .attr("transform",
@@ -109,18 +120,18 @@ d3.csv("diffPovRates.csv", function(error, data) {
  	// Function to create the initial graph
  	var initialGraph = function(year){
 
- 		// Filter the data to include only fruit of interest
+ 		// Filter the data to include only year of interest
  		var selectYear = nest.filter(function(d){
                 return d.key == year;
               })
 
-	    var selectYearGroups = svg.selectAll(".fruitGroups")
+	    var selectYearGroups = svg.selectAll(".yearGroups")
 		    .data(selectYear, function(d){
 		      return d ? d.key : this.key;
 		    })
 		    .enter()
 		    .append("g")
-		    .attr("class", "fruitGroups")
+		    .attr("class", "yearGroups")
 
 		var initialPath = selectYearGroups.selectAll(".line")
 			.data(function(d) { return d.values; })
@@ -144,13 +155,13 @@ d3.csv("diffPovRates.csv", function(error, data) {
  	// Update the data
  	var updateGraph = function(year){
 
- 		// Filter the data to include only fruit of interest
+ 		// Filter the data to include only year of interest
  		var selectYear = nest.filter(function(d){
                 return d.key == year;
               })
 
  		// Select all of the grouped elements and update the data
-    var selectYearGroups = svg.selectAll(".fruitGroups")
+    var selectYearGroups = svg.selectAll(".yearGroups")
 	    .data(selectYear)
 
     // Select all the lines and transition to new positions
@@ -174,7 +185,7 @@ d3.csv("diffPovRates.csv", function(error, data) {
             .select("select")
             .property("value")
 
-        // Run update function with the selected fruit
+        // Run update function with the selected year
         updateGraph(selectedYear)
 
 

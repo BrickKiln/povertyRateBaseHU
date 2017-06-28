@@ -8,15 +8,26 @@
     </head>
 
   <body>
-    <h1><span style="color:#D11F3A">Poverty Rates</span> in Relation to Hungary</h1>
-    <div id= "yearDropdown" style="vertical-align:top; display:inline-block"> <p>Select Year </p></div>
-    <div id="graph" style="display:inline-block"></div>
-    <div>
-      <p style="text-align:center; font-size:10px;"><i>Calculated using <a href="http://www.eui.eu/Research/Library/ResearchGuides/Economics/Statistics/DataPortal/EU-SILC.aspx">EU-SILC data</a> on households' equivalized disposable incomes and cross-sectional weights.
-        <br>
-        <br>
-        By Mark Bui, Armine Hakhinyan, and Corrado Minardi.<br>
-        School of Public Policy, Central European University</i></p>
+    <div id="wraper" style="text-align:center">
+      <h1><span style="color:#E69F00">Poverty Rates</span> in Relation to Hungary</h1>
+      <div id= "yearDropdown" style="vertical-align:top"></div>
+      <br>
+      <div class="row">
+        <div class="btn-group" role="group">
+          <button class="button button1">Hungary</button>
+          <button class="button button2">Czech</button>
+          <button class="button button3">Latvia</button>
+          <button class="button button4">Slovakia</button>
+        </div>
+      </div>
+      <div id="graph"></div>
+      <div>
+        <p style="text-align:center; font-size:10px;"><i>Calculated using <a href="http://www.eui.eu/Research/Library/ResearchGuides/Economics/Statistics/DataPortal/EU-SILC.aspx">EU-SILC data</a> on households' equivalized disposable incomes and cross-sectional weights.
+          <br>
+          <br>
+          By Mark Bui, Armine Hakhinyan, and Corrado Minardi.<br>
+          School of Public Policy, Central European University</i></p>
+      </div>
     </div>
     <script src="povRateBaseHU.js"></script>
   </body>
